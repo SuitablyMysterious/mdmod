@@ -1,0 +1,19 @@
+[project]
+name = "mdmod"
+version = "0.0.0"
+authors = [
+  { name="SuitablyMysterious", email="contact.suitablymysterious.dpdns.org" },
+]
+description = "A small example package"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/suitablymysterious/mdmod"
+Issues = "https://github.com/suitablymysterious/mdmod/issues"
