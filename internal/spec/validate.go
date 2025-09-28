@@ -8,7 +8,7 @@ import (
 func validate(mdspec_path string, schema_path string) (bool) {
 
 	// Introduce logging
-	logfile, err := os.OpenFile("../log.log")
+	logfile, err := os.Open("../log.log")
 	if err != nil {
 		log.Fatal("Failed to open log file")
 	} else {
@@ -18,21 +18,26 @@ func validate(mdspec_path string, schema_path string) (bool) {
 	log.SetPrefix("logger.go: ")
 
 	// Open the .mdspec file
-	mdspec, err := os.Open(mdspec_path) // 
+	mdspec, err := os.Open(mdspec_path)
 	if err != nil {
 		log.Fatalf("Failed to open %s", mdspec_path)
 	} else {
 		log.Printf("Opened %s", mdspec_path)
 	}
 	
-	compiler := jsonschema.NewCompiler()
-	opened_schema, err := os.Open(schema_path)
+	// Get the schema file
+	compiler := jsonschema.NewCompiler() // Create a JSON compiler for the schema
+	opened_schema, err := os.ReadFile(schema_path)
 	if err != nil {
-		log.Fatalf("Failed to open schema: %s", schema_path)
+		log.Fatalf("Failed to read schema: %s", schema_path)
+	} else {
+		log.Printf("Read schema: %s", schema_path)
 	}
-	schema, err := compiler.Compile([]byte(opened_schema))
+	schema, err := compiler.Compile(opened_schema)
 	if err != nil {
 		log.Fatal("Failed to compile schema")
 	}
-	return bool(schema.Validate(mdspec))
+
+	// Return the answer
+	return schema.Validate(mdspec).IsValid()
 }
