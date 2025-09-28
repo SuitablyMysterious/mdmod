@@ -1,0 +1,39 @@
+name: "core-markdown"
+description: "Example set of the most common features of markdown" # str
+version: 1
+
+features:
+  - heading
+  - paragraph
+  - link
+
+elements:
+  - name: heading
+    kind: block
+    match: '^#{1,6}\s'
+    render:
+      type: html
+      class: "heading-{level}"
+      html: "<h{level} id='{slug}'>{text}</h{level}>"
+  
+  - name: paragraph
+    kind: block
+    match: ".*"
+    render:
+      type: html
+      class: "para"
+      html: "<p>{text}</p>"
+  
+  - link:
+    kind: inline
+    match: "\[(?P<label>[^\]]+)\]\((?P<url>[^)]+)\)"
+    render:
+      type: html
+      class: href
+      html: "<a href='{url}'>{text}</a>"
+
+custom-css-rules:
+
+h1 {
+  color: #222222;
+}

@@ -1,0 +1,118 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://json-schema.org/draft/2020-12/schema",
+    "$vocabulary": {
+        "https://json-schema.org/draft/2020-12/vocab/core": true,
+        "https://json-schema.org/draft/2020-12/vocab/applicator": true,
+        "https://json-schema.org/draft/2020-12/vocab/unevaluated": true,
+        "https://json-schema.org/draft/2020-12/vocab/validation": true,
+        "https://json-schema.org/draft/2020-12/vocab/meta-data": true,
+        "https://json-schema.org/draft/2020-12/vocab/format-annotation": true,
+        "https://json-schema.org/draft/2020-12/vocab/content": true
+    },
+    "$dynamicAnchor": "meta",
+
+    "title": "mdmod Schema",
+
+    "type": "object",
+    "required": ["name", "kind", "match", "render"],
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "version": {
+            "type": "string",
+            "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+        },
+            "features": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "elements": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/element"
+            }
+        },
+        "custom-css-rules": {
+            "type": "string"
+        }
+    },
+    "$defs": {
+        "element": {
+            "type": "object",
+            "required": [
+                "name",
+                "kind",
+                "match"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "kind": {
+                    "type": "string",
+                    "enum": [
+                        "block",
+                        "inline",
+                        "fenced",
+                        "link",
+                        "container"
+                    ]
+                },
+                "match": {
+                    "type": "string"
+                },
+                "fence": {
+                    "type": "string"
+                },
+                "parse": {
+                    "type": "string",
+                    "enum": [
+                        "html",
+                        "custom"
+                    ]
+                },
+                "fields": {
+                    "type": "object",
+                    "properties": {
+                        "required": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "deafults": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "render": {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "html"
+                            ],
+                            "class": {
+                                "type": "string"
+                            },
+                            "html": {
+                                "type": "string"
+                            },
+                            "css": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
