@@ -1,0 +1,35 @@
+# Metadata about this module
+name: "" # str
+description: "" # str
+version: 1 # int or float (x.x.x)
+
+features: [] # NEED TO DEFINE
+
+elements:
+  - name: "" # str - unique
+    kind: "" # NEED TO DEFINE LATER - determines item behaviour
+
+    # For inine
+    match: "" # str - what the parser is looking for
+
+    # For fenced
+    fence: "" # str - the fence info word (e.g., "weapon")
+    parse: "" # str - "yaml" | "text" | "json"
+    fields:
+      required: [] # array
+      defaults: {} # object, default values for missing fields
+
+    # For links/inserts
+    scheme: "" # str - allow links to other items or 
+    map: {} # object or ruleset
+
+    # For inline (sort of)
+    break-char: # eg. whitespace for inline to stop breaking things
+
+    render:
+      type: # html/char/img/etc
+        # If html
+        class: "" # str
+        html: "" # str
+        css:
+          # str - styles go here

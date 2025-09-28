@@ -1,31 +1,39 @@
-# Metadata about this module
-name: "" # str
-description: "" # str
-version: 1 # int or float (x.x.x)
+name: "core-markdown"
+description: "Example set of the most common features of markdown" # str
+version: 1
 
-features: [] # NEED TO DEFINE
+features:
+  - heading
+  - paragraph
+  - link
 
 elements:
-  - name: "" # str - unique
-    kind: "" # NEED TO DEFINE LATER - determines item behaviour
-
-    # For inine
-    match: "" # str - what the parser is looking for
-
-    fence: "" # str - the fence info word (e.g., "weapon")
-    parse: "" # str - "yaml" | "text" | "json"
-    fields:
-      required: [] # array
-      defaults: {} # object, default values for missing fields
-
-    # For links/inserts
-    scheme: "" # str - allow links to other items or 
-    map: {} # object or ruleset
-
+  - name: heading
+    kind: block
+    match: '^#{1,6}\s'
     render:
-      type: # html/char/img/etc
-        # If html
-        class: "" # str
-        html: "" # str
-        css:
-          # str - styles go here
+      type: html
+      class: "heading-{level}"
+      html: "<h{level} id='{slug}'>{text}</h{level}>"
+  
+  - name: paragraph
+    kind: block
+    match: ".*"
+    render:
+      type: html
+      class: "para"
+      html: "<p>{text}</p>"
+  
+  - link:
+    kind: inline
+    match: ""
+    render:
+      type: html
+      class: href
+      html: "<a href='{url}'>{text}</a>"
+
+custom-css-rules:
+
+h1 {
+  color: #222222;
+}
