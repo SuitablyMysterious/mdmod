@@ -26,7 +26,7 @@ elements:
   
   - link:
     kind: inline
-    match: ""
+    match: "\[(?P<label>[^\]]+)\]\((?P<url>[^)]+)\)"
     render:
       type: html
       class: href
