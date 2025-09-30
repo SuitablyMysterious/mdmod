@@ -1,11 +1,13 @@
-package spec
+package utils
+
 import (
 	"log"
 	"os"
+
 	"github.com/kaptinlin/jsonschema"
 )
 
-func validate(mdspec_path string, schema_path string) (bool) {
+func validate(mdspecPath string, schemaPath string) bool {
 
 	// Introduce logging
 	logfile, err := os.Open("../log.log")
@@ -18,22 +20,22 @@ func validate(mdspec_path string, schema_path string) (bool) {
 	log.SetPrefix("logger.go: ")
 
 	// Open the .mdspec file
-	mdspec, err := os.Open(mdspec_path)
+	mdspec, err := os.Open(mdspecPath)
 	if err != nil {
-		log.Fatalf("Failed to open %s", mdspec_path)
+		log.Fatalf("Failed to open %s", mdspecPath)
 	} else {
-		log.Printf("Opened %s", mdspec_path)
+		log.Printf("Opened %s", mdspecPath)
 	}
-	
+
 	// Get the schema file
 	compiler := jsonschema.NewCompiler() // Create a JSON compiler for the schema
-	opened_schema, err := os.ReadFile(schema_path)
+	openedSchema, err := os.ReadFile(schemaPath)
 	if err != nil {
-		log.Fatalf("Failed to read schema: %s", schema_path)
+		log.Fatalf("Failed to read schema: %s", schemaPath)
 	} else {
-		log.Printf("Read schema: %s", schema_path)
+		log.Printf("Read schema: %s", schemaPath)
 	}
-	schema, err := compiler.Compile(opened_schema)
+	schema, err := compiler.Compile(openedSchema)
 	if err != nil {
 		log.Fatal("Failed to compile schema")
 	}
