@@ -87,7 +87,7 @@
                                 "type": "string"
                             }
                         },
-                        "deafults": {
+                        "defults": {
                             "type": "object"
                         }
                     }
