@@ -12,7 +12,7 @@
     },
     "$dynamicAnchor": "meta",
 
-    "title": "mdmod Schema",
+    "title": "mdspec Schema",
 
     "type": "object",
     "required": ["name", "kind", "match", "render"],

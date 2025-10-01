@@ -21,7 +21,6 @@ elements:
     match: ".*"
     render:
       type: html
-      class: "para"
       html: "<p>{text}</p>"
   
   - link:
