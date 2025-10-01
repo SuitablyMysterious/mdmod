@@ -2,6 +2,11 @@ name: "core-markdown"
 description: "Example set of the most common features of markdown" # str
 version: 1
 
+features:
+  - heading
+  - paragraph
+  - link
+
 elements:
   - name: heading
     kind: block
