@@ -9,7 +9,7 @@ elements:
   - name: "" # str - unique
     kind: "" # NEED TO DEFINE LATER - determines item behaviour
 
-    # For inine
+    # For inline
     match: "" # str - what the parser is looking for
 
     # For fenced
@@ -24,7 +24,7 @@ elements:
     map: {} # object or ruleset
 
     # For inline (sort of)
-    break-char: # eg. whitespace for inline to stop breaking things
+    break-char: # e.g. whitespace for inline to stop breaking things
 
     render:
       type: # html/char/img/etc
